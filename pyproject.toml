@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "face-group"
-version = "0.1.5"
-description = "Simple project for grouping faces of people by encodings."
+version = "0.1.6"
+description = "Grouping rgb and infra people`s faces by folders using face features."
 authors = ["irlirion <irlirion@protonmail.com>"]
 license = "MIT"
 readme = "README.md"
