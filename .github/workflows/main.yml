@@ -32,9 +32,9 @@ jobs:
         id: cache
         with:
           path: ${{ matrix.path }}
-          key: ${{ runner.os }}-${{ runner.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ runner.python-version }}-poetry-
+            ${{ runner.os }}-${{ matrix.python-version }}-poetry-
       - name: Install libraries
         if: steps.cache.outputs.cache-hit != 'true'
         run: poetry install 
