@@ -3,6 +3,7 @@
 
 [![PyPI Version][pypi-image]][pypi-url]
 [![Build Status][build-image]][build-url]
+[![codecov][codecov-image]][codecov-url]
 
 `face-group` finds faces using dlib
 
@@ -37,3 +38,5 @@ Options:
 [pypi-url]: https://pypi.org/project/face-group/
 [build-image]: https://github.com/Irlirion/face-group/actions/workflows/main.yml/badge.svg
 [build-url]: https://github.com/Irlirion/face-group/actions/workflows/main.yml
+[codecov-image]: https://codecov.io/gh/Irlirion/face-group/branch/master/graph/badge.svg?token=DH534TCGX7
+[codecov-url]: https://codecov.io/gh/Irlirion/face-group
