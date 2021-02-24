@@ -23,6 +23,7 @@ coverage = "^5.4"
 mccabe = "^0.6.1"
 pylint = "^2.6.2"
 tox-poetry-installer = {extras = ["poetry"], version = "^0.6.4"}
+pytest-cov = "^2.11.1"
 
 [tool.poetry.scripts]
 face-group = 'face_group.cli:group_faces'

@@ -1,6 +1,9 @@
 # Face group
 > Grouping rgb and infra people`s faces by folders using face features
 
+[![PyPI Version][pypi-image]][pypi-url]
+[![Build Status][build-image]][build-url]
+
 `face-group` finds faces using dlib
 
 
@@ -27,3 +30,10 @@ Options:
 
   --help                 Show this message and exit.
 ```
+
+<!-- Badges -->
+
+[pypi-image]: https://img.shields.io/pypi/v/face-group
+[pypi-url]: https://pypi.org/project/face-group/
+[build-image]: https://github.com/Irlirion/face-group/actions/workflows/main.yml/badge.svg
+[build-url]: https://github.com/Irlirion/face-group/actions/workflows/main.yml
