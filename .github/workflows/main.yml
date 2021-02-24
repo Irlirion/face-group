@@ -20,6 +20,11 @@ jobs:
         python-version: [3.8, 3.9]
         poetry-version: [1.0, 1.1.4]
         os: [ubuntu-latest, windows-latest]
+        include:
+        - os: ubuntu-latest
+          path: ~/.cache/pypoetry/virtualenvs/
+        - os: windows-latest
+          path: ~\AppData\Local\pypoetry\Cache\virtualenvs
     runs-on: ${{ matrix.os }}
     env:
       OS: ${{ matrix.os }}
@@ -29,7 +34,7 @@ jobs:
       - uses: actions/cache@v2
         id: cache
         with:
-          path: ~/.cache/pypoetry/cache/repositories/pypi
+          path: ~/.cache/pypoetry/virtualenvs/
           key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: |
             ${{ runner.os }}-poetry-
@@ -53,7 +58,11 @@ jobs:
           env_vars: OS,PYTHON
           fail_ci_if_error: true
   pypi:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/setup-python@v2
         with:
