@@ -22,8 +22,8 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
-      OS: ${{ runner.os }}
-      PYTHON: ${{ runner.poetry-version }}
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.poetry-version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
