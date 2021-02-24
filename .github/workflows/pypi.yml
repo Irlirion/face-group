@@ -1,0 +1,17 @@
+name: pypi
+on:
+  workflow_dispatch:
+jobs:
+  pypi:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install libraries
+        run: pip install face-group
+      - name: Run face-group
+        run: face-group --help
