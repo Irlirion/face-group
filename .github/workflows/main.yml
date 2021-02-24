@@ -21,13 +21,6 @@ jobs:
       PYTHON: ${{ matrix.poetry-version }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        id: cache
-        with:
-          path: ${{ matrix.path }}
-          key: ${{ runner.os }}-${{ runner.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.python-version }}-poetry-
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -35,6 +28,13 @@ jobs:
         uses: abatilo/actions-poetry@v2.0.0
         with:
           poetry-version: ${{ matrix.poetry-version }}
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: ${{ matrix.path }}
+          key: ${{ runner.os }}-${{ runner.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.python-version }}-poetry-
       - name: Install libraries
         if: steps.cache.outputs.cache-hit != 'true'
         run: poetry install 
