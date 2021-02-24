@@ -5,6 +5,7 @@ description = "Grouping rgb and infra people`s faces by folders using face featu
 authors = ["irlirion <irlirion@protonmail.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/Irlirion/face-group"
 
 [tool.poetry.dependencies]
 python = "^3.8"
