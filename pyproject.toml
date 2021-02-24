@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "face-group"
-version = "0.1.6"
+version = "0.1.7"
 description = "Grouping rgb and infra people`s faces by folders using face features."
 authors = ["irlirion <irlirion@protonmail.com>"]
 license = "MIT"
