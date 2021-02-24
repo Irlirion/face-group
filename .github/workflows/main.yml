@@ -21,6 +21,9 @@ jobs:
         poetry-version: [1.0, 1.1.4]
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      OS: ${{ runner.os }}
+      PYTHON: ${{ runner.poetry-version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -49,4 +52,15 @@ jobs:
           flags: unittests
           env_vars: OS,PYTHON
           fail_ci_if_error: true
-          verbose: true
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install libraries
+        run: pip install face-group
+      - name: Run face-group
+        run: face-group --help
+    
+  
