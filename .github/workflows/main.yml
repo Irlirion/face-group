@@ -27,7 +27,7 @@ jobs:
           path: ${{ matrix.path }}
           key: ${{ runner.os }}-${{ runner.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
+            ${{ runner.os }}-${{ runner.python-version }}-poetry-
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
