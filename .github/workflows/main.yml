@@ -19,10 +19,20 @@ jobs:
       matrix:
         python-version: [3.8, 3.9]
         poetry-version: [1.0, 1.1.4]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.poetry-version }}
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: ~/.cache/pypoetry/cache/repositories/pypi
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -31,19 +41,26 @@ jobs:
         with:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Install libraries
+        if: steps.cache.outputs.cache-hit != 'true'
         run: poetry install 
       - name: Test coverage
-        run: poetry pytest --cov=./ --cov-report=xml
+        run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
-      - uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1.2.1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           flags: unittests
           env_vars: OS,PYTHON
           fail_ci_if_error: true
-          verbose: true
-            
-            
-            
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install libraries
+        run: pip install face-group
+      - name: Run face-group
+        run: face-group --help
+    
   
